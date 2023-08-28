@@ -1,0 +1,13 @@
+#DIAGNOSTICOS REALIZADOS AL MES DE ACUERDO A LA ENFERMEDAD
+cantidadDiagnosticosEnero = ""
+cantidadDiagnosticosFebrero = ""
+cantidadDiagnosticosMarzo= ""
+cantidadDiagnosticosAbril = ""
+cantidadDiagnosticosMayo = ""
+cantidadDiagnosticosJunio = ""
+cantidadDiagnosticosJulio = ""
+cantidadDiagnosticosAgosto = ""
+cantidadDiagnosticosSeptiembre = ""
+cantidadDiagnosticosOctubre = ""
+cantidadDiagnosticosNoviembre = ""
+cantidadDiagnosticosDiciembre = ""

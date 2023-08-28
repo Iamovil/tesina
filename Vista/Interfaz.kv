@@ -1,0 +1,3459 @@
+MDScreenManager:
+# /////////////////////////////////////////////////////////
+# ////////////////Interfaz de inicio de sesión////////////
+# ///////////////////////////////////////////////////////
+    MDScreen:
+        name: "screen A"
+        md_bg_color: "#110d4e"
+
+        MyHero:
+            id: hero_from
+            tag: "hero"
+            icon: "account-circle"
+            size_hint: None, None
+            size: "120dp", "120dp"
+            pos_hint: {"center_x": .50, "center_y": .80}
+            x: 24
+
+            MDIconButton:
+                # size_hint: None, None
+                size: hero_from.size
+                # md_bg_color: "black"
+                icon: "account-circle"
+                icon_size: "100sp"
+                theme_text_color: "Custom"
+                icon_color: "#FFFFFF"
+                pos_hint: {"center_x": .80}
+                # radius: [24, 12, 24, 12]
+                
+
+        MDTextField: 
+            id: user
+            icon_left: "account-check"
+            hint_text: "Correo"
+            color_mode:'custom'
+            line_color_normal: "white"
+            hint_text_color_normal: "white"
+            icon_left_color_normal: "white"
+            text_color_focus: "white"
+            text_color_normal: "white"
+            foreground_color: 1, 0, 1, 1
+            size_hint_x: None
+            width: 220
+            font_size: 20 
+            mode: "fill"
+            fill_color_normal: "#19076b"
+            fill_color_focus: "#19076b"
+            pos_hint: {"center_x": 0.5, "center_y":0.60}
+            # required: True
+
+        MDTextField: 
+            id: password
+            icon_left: "key-variant"
+            hint_text: "Contraseña"
+            # foreground_color: 1, 0, 1, 1
+            # fill_color: 0, 0, 0, .4
+            line_color_normal: "white"
+            hint_text_color_normal: "white"
+            icon_left_color_normal: "white"
+            text_color_focus: "white"
+            text_color_normal: "white"
+            color_mode: 'custom'
+            # line_color_focus: 1, 0, 1, 1
+            size_hint_x: None
+            width: 220
+            font_size: 20 
+            pos_hint: {"center_x": 0.5, "center_y":0.40}
+            password: True
+            mode: "fill"
+            fill_color_normal: "#19076b"
+            fill_color_focus: "#19076b"
+            # required: True
+
+        MDFillRoundFlatButton:
+            text: "LOG IN"
+            pos_hint: {"center_x": .5,"center_y":0.20}
+            y: "36dp"
+            md_bg_color: "#19076b"
+            on_release:
+                app.inicioSesion()
+                app.interfazPreguntas()
+
+        MDTextButton:
+            id:btnRecuperarContra
+            text: "[color=ffffff]¿Olvidaste[/color] [color=ffffff]tu[/color] [color=ffffff]contraseña?[/color]"
+            pos_hint: {"center_x": .5,"center_y":0.31}
+            markup: True
+            y: "36dp"
+            font_size: "12sp"
+            on_release:
+                root.current_heroes = ["hero"]
+                root.current = "screen RecuperacionC"
+
+
+        MDTextButton:
+            id: btnReg
+            # text_size: self.size
+            # halign: 'right'
+            # valign: 'middle'
+            text: "[color=ffffff]Aún[/color] [color=ffffff]no[/color] [color=ffffff]te[/color] [color=ffffff]registras?[/color]"
+            pos_hint: {"center_x": .5, "center_y": .055}
+            y: "36dp"
+            markup: True
+            on_release:
+                app.accederAlRegistroUsuario()
+    # ////////////////////////////////////////////////////////////////////
+    # /////////////////Interfaz de Registro de usuario///////////////////
+    # //////////////////////////////////////////////////////////////////
+    MDScreen:
+        name: "screen R"
+        md_bg_color: "#110d4e"
+        hero_to: hero_to
+        
+        MDHeroTo:
+            id: hero_r
+            tag: "hero"
+            icon: "account-circle"
+            size_hint: None, None
+            size: "120dp", "120dp"
+            pos_hint: {"center_x": .50, "center_y": .90}
+            x: 24
+            
+            
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                id: gridRegistroInicio
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+                AnchorLayout:
+                    size_hint_y: None
+                    height: iconButonRegistrarInicio.height
+                    MDIconButton:
+                        id: iconButonRegistrarInicio
+                        # size_hint: None, None
+                        size: hero_from.size
+                        # md_bg_color: "black"
+                        icon: "account-circle"
+                        icon_size: "100sp"
+                        pos_hint: {"center_x": .80}
+                        theme_text_color: "Custom"
+                        icon_color: "#FFFFFF"
+                        # radius: [24, 12, 24, 12]
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: nombreUsuario_reg.height
+
+                    MDTextField: 
+                        id: nombreUsuario_reg
+                        icon_left: "account"
+                        hint_text: "Usuario"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 20 
+                        mode: "fill"
+                        fill_color_normal: "#19076b"
+                        fill_color_focus: "#19076b"
+                        pos_hint: {"center_x": 0.5, "center_y":0.7}
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: password_reg.height
+
+                    MDTextField: 
+                        id: password_reg
+                        icon_left: "key-variant"
+                        hint_text: "Nueva contraseña"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 20 
+                        mode: "fill"
+                        fill_color_normal: "#19076b"
+                        fill_color_focus: "#19076b"
+                        pos_hint: {"center_x": 0.5, "center_y":0.6}
+                        password: True
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: correo_reg.height
+
+                    MDTextField: 
+                        id: correo_reg
+                        icon_left: "email"
+                        hint_text: "Correo"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 20 
+                        mode: "fill"
+                        fill_color_normal: "#19076b"
+                        fill_color_focus: "#19076b"
+                        pos_hint: {"center_x": 0.5, "center_y":0.5}
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: nombre_reg.height
+
+                    MDTextField: 
+                        id: nombre_reg
+                        icon_left: "account-check"
+                        hint_text: "Nombre personal"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        pos_hint: {"center_x": .5, "top": 1}
+                        size_hint:(None,None)
+                        width: 220
+                        font_size: 20 
+                        mode: "fill"
+                        fill_color_normal: "#19076b"
+                        fill_color_focus: "#19076b"
+                        halign: "center"
+                        valign: 'bottom'
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: apellido_reg.height
+
+                    MDTextField: 
+                        id: apellido_reg
+                        icon_left: "key-variant"
+                        hint_text: "Apellido"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 20 
+                        mode: "fill"
+                        fill_color_normal: "#19076b"
+                        fill_color_focus: "#19076b"
+                        halign: "center"
+                        valign: "center"
+                        spacing: "4dp"
+                        pos_hint: {"center_x": .5, "top": 1}
+                        size_hint:(None,None)
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: checkGdAcademico.height
+
+                    MDCheckbox:
+                        id: checkGdAcademico
+                        size_hint: None, None
+                        size: "48dp", "48dp"
+                        pos_hint: {'center_x': .5, 'center_y': .3}
+                        active: False
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: grado_reg.height
+
+                    MDTextField: 
+                        id: grado_reg
+                        icon_left: "school"
+                        hint_text: "Grado Académico"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 20 
+                        mode: "fill"
+                        fill_color_normal: "#19076b"
+                        fill_color_focus: "#19076b"
+                        y: "20dp"
+                        disabled: not checkGdAcademico.active
+                        pos_hint: {"center_x": .5, "top": 1}
+                        size_hint:(None,None)
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: telefono_reg.height
+
+                    MDTextField: 
+                        id: telefono_reg
+                        icon_left: "phone"
+                        hint_text: "Teléfono"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 20 
+                        mode: "fill"
+                        fill_color_normal: "#19076b"
+                        fill_color_focus: "#19076b"
+                        pos_hint: {"center_x": .5, "top": 1}
+                        size_hint:(None,None) 
+ 
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnRegistrarUsuario.height
+
+                    MDFillRoundFlatButton:
+                        id: btnRegistrarUsuario
+                        text: "Registrar"
+                        pos_hint: {"center_x": .7,"center_y":0.08}
+                        y: "20dp"
+                        md_bg_color: "#19076b"
+                        on_release:
+                            app.registrarNuevoUsuario()
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnRegresarInicioSesion.height
+
+                    MDFillRoundFlatButton:
+                        id: btnRegresarInicioSesion
+                        text: "Regresar"
+                        pos_hint: {"center_x": .3,"center_y":0.08}
+                        y: "20dp"
+                        md_bg_color: "#19076b"
+                        on_release:
+                            root.current_heroes = ["hero"]
+                            root.current = "screen A"
+
+    # /////////////////////////////////////////////////////////
+    # ///////////////////Interfaz de menu/////////////////////
+    # ////////////////////////////////////////////////////////
+    MDScreen:
+        name: "screen B"
+        hero_to: hero_to
+        md_bg_color: "#110d4e"
+        MDHeroTo:
+            id: hero_to
+            tag: "hero"
+            size_hint: None, None
+            # size: "220dp", "220dp"
+            pos_hint: {"center_x": .5, "center_y": .5}
+        MDBottomNavigation:
+            id: idNavigationButtonsMenuPrincipal
+            panel_color: "#5386A6"
+            selected_color_background: "#D5E5F2"
+            text_color_active: "#D5E5F2"
+            height: dp(56)
+            MDBottomNavigationItem:
+                id: navItemComm
+                name: "screen 1"
+                # text: "Comunidad"
+                icon: "account-group"
+                md_bg_color: "#93AEBF"
+                on_tab_release: 
+                    app.interfazPreguntas()
+                
+                ScrollView:
+                    do_scroll_x: False
+                    MDGridLayout:
+                        id: gridPreguntasComunidadMenu
+                        cols: 1
+                        size_hint_y: None
+                        height: self.minimum_height
+                        spacing: dp(10)
+                        AnchorLayout:
+                            size_hint_y: None
+                            height: "50dp"
+                            MDIconButton:
+                                icon: "account-group-outline"
+                                theme_icon_color: "Custom"
+                                icon_color: "#110d4e"
+                                icon_size: "50sp"
+                                halign: "center"
+                                valign: "center"
+
+                        AnchorLayout:
+                            size_hint_y: None
+                            height: "20dp"
+                            MDLabel:    
+                                id: tituloComunidadMenu
+                                text: "Preguntas de la comunidad"
+                                pos_hint: {"center_x": 0.5, "center_y":0.80}
+                                halign: "center"
+                                theme_text_color: "Custom"
+                                text_color: "#110d4e"
+                                font_name: "Times New Roman"
+                                bold: True
+                                font_style: "H5"
+                        AnchorLayout: 
+                            size_hint_y: None
+                            height: "400dp"
+                            ScrollView:
+                                do_scroll_x: False
+                                MDGridLayout:
+                                    id: gridPreg
+                                    cols: 1
+                                    row_default_height: (self.width - self.cols*self.spacing[0]) / self.cols
+                                    row_force_default: True
+                                    adaptive_height: True
+                                    padding: dp(4), dp(4)
+                                    spacing: dp(4)
+
+            MDBottomNavigationItem:
+                name: "screen 2"
+                # text: "Reconocimiento"
+                icon: "atom"
+                md_bg_color: "#93AEBF"
+
+                MDIconButton:
+                    icon: 'magnify-scan'
+                    pos_hint: {"center_x": 0.5, "center_y":0.90}
+                    theme_icon_color: "Custom"
+                    icon_color: "#110d4e"
+                    icon_size: "50sp"
+                    halign: "center"
+                    valign: "center"
+
+                MDLabel:    
+                    text: "Reconocimiento de imagen"
+                    pos_hint: {"center_x": 0.5, "center_y":0.80}
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: "#110d4e"
+                    font_name: "Times New Roman"
+                    bold: True
+                    font_style: "H5"
+
+                MDLabel:    
+                    text: "Relice el reconocimiento de imagenes sobre la enfermedad"
+                    pos_hint: {"center_x": 0.5, "center_y":0.70}
+                    halign: "center"
+                    font_style: "Subtitle2"
+                    theme_text_color: "Custom"
+                    bold: True
+
+
+                MDFillRoundFlatButton:
+                    id: btnTomarImagenReconocimiento
+                    text: "Tomar foto"
+                    md_bg_color: "#383EF1"
+                    pos_hint: {"center_x": .5,"center_y":0.55}
+                    y: "20dp"
+                    on_release:
+                        root.current_heroes = ["hero"]
+                        root.current = "screen tomaFotohrafiaInterfaz"
+
+                MDFillRoundFlatButton:
+                    id: btnAddImageReconocimiento
+                    text: "Añadir imagen de galeria"
+                    md_bg_color: "#383EF1"
+                    pos_hint: {"center_x": .5,"center_y":0.45}
+                    y: "20dp"
+                    on_release:
+                        app.buscarImagenReconocimiento()
+
+                MDLabel:    
+                    text: "Ingrese la imagen haciendo click sobre el botón"
+                    pos_hint: {"center_x": 0.5, "center_y":0.35}
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: "#020334"
+                    font_name: "Times New Roman"
+                    # bold: True
+                    font_style: "Body2"
+                
+                MDFillRoundFlatButton:
+                    id: btnRealizarEscaneo
+                    md_bg_color: "#383EF1"
+                    text: "Escanear"
+                    pos_hint: {"center_x": .5,"center_y":0.20}
+                    y: "20dp"
+                    on_release:
+                        root.current_heroes = ["hero"]
+                        root.current = "screen ReconocimientoResultado"
+                        app.rellenarInformacionReconocimientoResultados()
+
+                MDLabel:    
+                    text: "Puede tardar considerablemente la obtención del resultado"
+                    pos_hint: {"center_x": 0.5, "center_y":0.10}
+                    text_color: "#020334"
+                    theme_text_color: "Custom"
+                    font_name: "Times New Roman"
+                    halign: "center"
+                    # bold: True
+                    font_style: "Body2"
+
+            MDBottomNavigationItem:
+                name: "screen 3"
+                icon: "account"
+                md_bg_color: "#93AEBF"
+                on_tab_release:
+                    app.rellenarInformacionPerfil()
+                ScrollView:
+                    do_scroll_x: False
+                    MDGridLayout:
+                        id: gridinfo
+                        cols: 1
+                        size_hint_y: None
+                        height: self.minimum_height
+                        spacing: dp(10)
+                        AnchorLayout:
+                            size_hint_y: None
+                            height: but1.height
+                            MDIconButton:
+                                id: but1
+                                icon: "account-circle-outline"
+                                theme_icon_color: "Custom"
+                                icon_color: "#110d4e"
+                                icon_size: "50sp"
+                                halign: "center"
+                                valign: "center"
+                                
+                        MDLabel:
+                            text: "Perfil"
+                            halign: "center"
+                            font_style: "H6"
+                            # pos_hint: {"center_x": 0.5, "center_y":0.80}
+                        AnchorLayout:
+                            size_hint_y: None
+                            height: nombreUsuario_perfil.height
+                            MDTextField: 
+                                id: nombreUsuario_perfil
+                                hint_text: "Nombre de usuario"
+                                theme_hint_text_color: "Custom"
+                                hint_text_color_normal: "#110d4e"
+                                mode: "rectangle"
+                                foreground_color: 1, 0, 1, 1
+                                size_hint_x: None
+                                width: 220
+                                font_size: 11 
+                                # halign: "center"
+                                # pos_hint: {"center_x": 0.5, "center_y":0.35}
+                                required: True
+                        AnchorLayout:
+                            size_hint_y: None
+                            height: correoUsuario_perfil.height
+                            MDTextField: 
+                                id: correoUsuario_perfil
+                                hint_text: "Correo"
+                                hint_text_color_normal: "#110d4e"
+                                mode: "rectangle"
+                                foreground_color: 1, 0, 1, 1
+                                size_hint_x: None
+                                width: 220
+                                font_size: 11 
+                                # halign: "center"
+                        AnchorLayout:
+                            size_hint_y: None
+                            height: contraUsuario_perfil.height
+                            MDTextField: 
+                                id: contraUsuario_perfil
+                                hint_text: "Contraseña"
+                                hint_text_color_normal: "#110d4e"
+                                mode: "rectangle"
+                                foreground_color: 1, 0, 1, 1
+                                size_hint_x: None
+                                width: 220
+                                font_size: 11 
+                                # halign: "center"
+                                password: True
+                        AnchorLayout:
+                            size_hint_y: None
+                            height: nombrePersonalUsuario_perfil.height
+                            MDTextField: 
+                                id: nombrePersonalUsuario_perfil
+                                hint_text: "Nombre personal"
+                                hint_text_color_normal: "#110d4e"
+                                mode: "rectangle"
+                                foreground_color: 1, 0, 1, 1
+                                size_hint_x: None
+                                width: 220
+                                font_size: 11 
+                                # halign: "center"
+                        AnchorLayout:
+                            size_hint_y: None
+                            height: apellidoUsuario_perfil.height
+                            MDTextField: 
+                                id: apellidoUsuario_perfil
+                                hint_text: "Apellido"
+                                hint_text_color_normal: "#110d4e"
+                                mode: "rectangle"
+                                foreground_color: 1, 0, 1, 1
+                                size_hint_x: None
+                                width: 220
+                                font_size: 11 
+                                # halign: "center"
+                        AnchorLayout:
+                            size_hint_y: None
+                            height: checkGdAcademicoPerfil.height
+                            MDCheckbox:
+                                id: checkGdAcademicoPerfil
+                                size_hint: None, None
+                                size: "48dp", "48dp"
+                                # pos_hint: {'center_x': .5, 'center_y': .3}
+                                active: False
+                        AnchorLayout:
+                            size_hint_y: None
+                            height: gradoActPerfil.height
+                            MDTextField: 
+                                id: gradoActPerfil
+                                icon_left: "school"
+                                hint_text: "Grado Académico"
+                                hint_text_color_normal: "#110d4e"
+                                mode: "rectangle"
+                                foreground_color: 1, 0, 1, 1
+                                size_hint_x: None
+                                width: 220
+                                font_size: 11 
+                                y: "20dp"
+                                disabled: not checkGdAcademicoPerfil.active
+                                # pos_hint: {"center_x": .5, "top": 1}
+                                size_hint:(None,None)
+                        AnchorLayout:
+                            size_hint_y: None
+                            height: telefonoPerfil.height
+                            MDTextField: 
+                                id: telefonoPerfil
+                                icon_left: "phone"
+                                hint_text: "Teléfono"
+                                hint_text_color_normal: "#110d4e"
+                                mode: "rectangle"
+                                foreground_color: 1, 0, 1, 1
+                                size_hint_x: None
+                                width: 220
+                                font_size: 11
+                                disabled: not checkGdAcademicoPerfil.active
+                                # pos_hint: {"center_x": .5, "top": 1}
+                                size_hint:(None,None) 
+                        AnchorLayout:
+                            size_hint_y: None
+                            height: btnActualizarInformacionPersonal.height
+                            MDFillRoundFlatButton:
+                                id: btnActualizarInformacionPersonal
+                                text: "Actualizar información"
+                                # pos_hint: {"center_x": .3,"center_y":0.25}
+                                y: "20dp"
+                                md_bg_color: "#383EF1"
+                                on_release:
+                                    app.actualizarInformacionPerfilUsuario()
+                                    
+            ######################################################################
+            #   Menu de acciones del usuario (modificar y eliminar respuestas)   #
+            ######################################################################
+
+            MDBottomNavigationItem:
+                id: interfazUsuarioAcciones
+                name: "screen 35"
+                # text: "Usuario"
+                icon: "cog-outline"
+                md_bg_color: "#93AEBF"
+                on_tab_release:
+                    app.agregarBotonGestionUsuarios()
+                    
+                MDLabel:
+                    text: "Mi espacio"
+                    halign: "center"
+                    font_style: "H5"
+                    pos_hint: {"center_x": .5, "center_y": .9}
+
+            MDBottomNavigationItem:
+                name: "screen 4"
+                # text: "Log Out"
+                icon: "login"
+                md_bg_color: "#93AEBF"
+                on_tab_release:
+                    root.current_heroes = ["hero"]
+                    root.current = "screen A" 
+ 
+                MDLabel:
+                    halign: "center"
+    
+
+    # /////////////////////////////////////////////////////////////////////
+    # /////////////////Interfaz de Registro de preguntas///////////////////
+    # /////////////////////////////////////////////////////////////////////
+
+    MDScreen:
+        name: "screen Pr"
+        md_bg_color: "#93AEBF"
+        hero_to: hero_to
+        
+        MDHeroTo:
+            id: hero_r
+            tag: "hero"
+            icon: "account-circle"
+            size_hint: None, None
+            size: "120dp", "120dp"
+            pos_hint: {"center_x": .50, "center_y": .90}
+            x: 24
+        
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                id: gridPreguntaAgregarForm
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+                    MDIconButton:
+                        icon: "frequently-asked-questions"
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "50sp"
+                        halign: "center"
+                        valign: "center"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50"
+                    MDLabel:    
+                        text: "Registro de pregunta"
+                        pos_hint: {"center_x": 0.5, "center_y":0.80}
+                        halign: "center"
+                        theme_text_color: "Custom"
+                        text_color: "#110d4e"
+                        font_name: "Times New Roman"
+                        bold: True
+                        font_style: "H5"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: descripcion_preg.height
+
+                    MDTextField: 
+                        id: descripcion_preg
+                        icon_left: "account"
+                        hint_text: "Descripción"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 20 
+                        mode: "fill"
+                        fill_color_normal: "#19076b"
+                        fill_color_focus: "#19076b" 
+                        pos_hint: {"center_x": 0.5, "center_y":0.7}
+                    
+                AnchorLayout:
+                    size_hint_y: None
+                    height: pregunta_preg.height
+
+                    MDTextField: 
+                        id: pregunta_preg
+                        icon_left: "account"
+                        hint_text: "Pregunta"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 20 
+                        mode: "fill"
+                        fill_color_normal: "#19076b"
+                        fill_color_focus: "#19076b"
+                        pos_hint: {"center_x": 0.5, "center_y":0.6}
+                    
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "40dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "35dp"
+                    MDFillRoundFlatButton:
+                        id: anadirImagen_Preg
+                        text: "Añadir imagen"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .5,"center_y":0.5}
+                        y: "20dp"
+                        on_release:
+                            app.buscarImagenPregunta()
+                        
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "35dp"
+                    MDFillRoundFlatButton:
+                        id: btnAgregar_Preg
+                        text: "Agregar pregunta"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .7,"center_y":0.2}
+                        y: "20dp"
+                        on_release:
+                            app.registrarPregunta()
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "35dp"
+                    MDFillRoundFlatButton:
+                        id: btnRegresar_Preg_reg
+                        text: "Regresar"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .2,"center_y":0.2}
+                        y: "20dp"
+                        on_release:
+                            root.current_heroes = ["hero"]
+                            root.current = "screen B"
+                
+
+    # ///////////////////////////////////////////////////////////////////////
+    # /////////////////Interfaz de consulta de respuestas ///////////////////
+    # ///////////////////////////////////////////////////////////////////////
+    
+    MDScreen:
+        id:  infoRespuestas_Screen
+        name: "screen Respuesta"
+        md_bg_color: "#93AEBF"
+        hero_to: hero_to
+        
+        MDHeroTo:
+            id: hero_r
+            tag: "hero"
+            icon: "account-circle"
+            size_hint: None, None
+            size: "120dp", "120dp"
+            pos_hint: {"center_x": .50, "center_y": .90}
+            x: 24
+            
+        MDIconButton:
+            icon: 'forum'
+            pos_hint: {"center_x": 0.5, "center_y":0.90}
+            theme_icon_color: "Custom"
+            icon_color: "#110d4e"
+            icon_size: "50sp"
+            halign: "center"
+            valign: "center"
+
+        MDBoxLayout:
+            id: BoxInfoPreguntaSelect
+            md_bg_color: "#5386A6"
+            pos_hint: {"center_x": 0.5, "center_y":0.70}
+            adaptive_height: True
+            halign: "center"
+            valign: 'bottom'
+            size: (88,88)
+            ScrollView:
+                id: scrollRespuestasPersonalesPrincipal
+                do_scroll_x: False
+                MDGridLayout:
+                    id: gridinfoRespuesta_Comunidad
+                    cols: 1
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: dp(10)
+        MDBoxLayout:
+            md_bg_color: "#DDDDDD"
+            pos_hint: {"center_x": 0.5, "center_y":0.44}
+            adaptive_height: True
+            halign: "center"
+            valign: 'bottom'
+            size: (160,160)
+            ScrollView:
+                do_scroll_x: False
+                MDList:
+                    id: lista_respuestas
+                    size_hint_y: None
+                    height: root.height - BoxInfoPreguntaSelect.height
+                    padding: 10
+                    spacing: 10
+        
+        MDTextField:
+            id: text_field_resp
+            hint_text: "Respuesta"
+            icon_left: "email-outline"
+            pos_hint: {"center_x": 0.5, "center_y":0.20}
+        MDIconButton:
+            icon: "send"
+            pos_hint: {"center_y":0.20}
+            pos: text_field_resp.width - self.width + dp(8), 0
+            theme_text_color: "Hint"
+            on_release:
+                app.registrarRespuesta()
+
+        MDFillRoundFlatButton:
+            id: btnRegresarMenu_Resp
+            text: "Regresar"
+            md_bg_color: "#383EF1"
+            pos_hint: {"center_x": .5,"center_y":0.08}
+            y: "20dp"
+            on_release:
+                root.current_heroes = ["hero"]
+                root.current = "screen B"
+    
+
+    # //////////////////////////////////////////////////////////////////////////////////
+    # /////////////////Interfaz de consulta de preguntas personales ///////////////////
+    # ////////////////////////////////////////////////////////////////////////////////
+
+    MDScreen:
+        id:  preguntasPersonales_Screen
+        name: "screen PrP"
+        md_bg_color: "#93AEBF"
+        hero_to: hero_to
+        
+        MDHeroTo:
+            id: hero_r
+            tag: "hero"
+            icon: "account-circle"
+            size_hint: None, None
+            size: "120dp", "120dp"
+            pos_hint: {"center_x": .50, "center_y": .90}
+            x: 24
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                id: gridPreguntasPersonalesContenido
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+                    MDIconButton:
+                        icon: "account-question"
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "50sp"
+                        halign: "center"
+                        valign: "center"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "20dp"
+                    MDLabel:    
+                        id: tituloPreguntasPersonalesMenu
+                        text: "Preguntas personales"
+                        pos_hint: {"center_x": 0.5, "center_y":0.80}
+                        halign: "center"
+                        theme_text_color: "Custom"
+                        text_color: "#110d4e"
+                        font_name: "Times New Roman"
+                        bold: True
+                        font_style: "H5"
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "400dp"
+                    ScrollView:
+                        id: scrollPreguntasPersonalesImagenes
+                        do_scroll_x: False
+                        MDGridLayout:
+                            id: gridPregPersonales
+                            cols: 1
+                            row_default_height: (self.width - self.cols*self.spacing[0]) / self.cols
+                            row_force_default: True
+                            adaptive_height: True
+                            padding: dp(4), dp(4)
+                            spacing: dp(4)
+                            
+        MDFloatingActionButton:
+            icon: "keyboard-backspace"
+            md_bg_color: "#383EF1"
+            on_release:
+                root.current_heroes = ["hero"]
+                root.current = "screen B"
+
+    # ///////////////////////////////////////////////////////////////////////////////////
+    # /////////////////Interfaz de consulta de respuestas personales (Preguntas) ///////////////////
+    # /////////////////////////////////////////////////////////////////////////////////
+
+    MDScreen:
+        id:  preguntasPersonales_Respuestas_Screen
+        name: "screen PrPRes11"
+        md_bg_color: "#93AEBF"
+        hero_to: hero_to
+        
+        MDHeroTo:
+            id: hero_r
+            tag: "hero"
+            icon: "account-circle"
+            size_hint: None, None
+            size: "120dp", "120dp"
+            pos_hint: {"center_x": .50, "center_y": .90}
+            x: 24
+
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                id: gridRespuestasPersonalesContenido
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+                    MDIconButton:
+                        icon: "send-check"
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "50sp"
+                        halign: "center"
+                        valign: "center"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "20dp"
+                    MDLabel:    
+                        id: tituloPreguntasPersonalesMenu
+                        text: "Respuestas personales"
+                        pos_hint: {"center_x": 0.5, "center_y":0.80}
+                        halign: "center"
+                        theme_text_color: "Custom"
+                        text_color: "#110d4e"
+                        font_name: "Times New Roman"
+                        bold: True
+                        font_style: "H5"
+
+                AnchorLayout: 
+                    size_hint_y: None
+                    height: "400dp"
+                    ScrollView:
+                        do_scroll_x: False
+                        MDGridLayout:
+                            id: gridPregPersonales_Resp_Per
+                            cols: 1
+                            row_default_height: (self.width - self.cols*self.spacing[0]) / self.cols
+                            row_force_default: True
+                            adaptive_height: True
+                            padding: dp(4), dp(4)
+                            spacing: dp(4)
+
+        MDFloatingActionButton:
+            icon: "keyboard-backspace"
+            md_bg_color: "#383EF1"
+            on_release:
+                root.current_heroes = ["hero"]
+                root.current = "screen B"
+
+    # ////////////////////////////////////////////////////////////////////////////////////////////////////
+    # /////////////////Interfaz de modificación y eliminación de preguntas personales ///////////////////
+    # //////////////////////////////////////////////////////////////////////////////////////////////////
+    MDScreen:
+        name: "screen PrMd"
+        md_bg_color: "#93AEBF"
+        hero_to: hero_to
+        
+        MDHeroTo:
+            id: hero_r
+            tag: "hero"
+            icon: "account-circle"
+            size_hint: None, None
+            size: "120dp", "120dp"
+            pos_hint: {"center_x": .50, "center_y": .90}
+            x: 24
+        
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                id: gridPreguntaAgregarFormModificar
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+                    MDIconButton:
+                        icon: "frequently-asked-questions"
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "50sp"
+                        halign: "center"
+                        valign: "center"
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50"
+                    MDLabel:    
+                        text: "Modificación de pregunta"
+                        pos_hint: {"center_x": 0.5, "center_y":0.80}
+                        halign: "center"
+                        theme_text_color: "Custom"
+                        text_color: "#110d4e"
+                        font_name: "Times New Roman"
+                        bold: True
+                        font_style: "H5"
+        
+                AnchorLayout:
+                    size_hint_y: None
+                    height: descripcion_preg_mod.height
+                    MDTextField: 
+                        id: descripcion_preg_mod
+                        icon_left: "account"
+                        hint_text: "Descripción"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 20 
+                        mode: "fill"
+                        fill_color_normal: "#19076b"
+                        fill_color_focus: "#19076b" 
+                        pos_hint: {"center_x": 0.5, "center_y":0.7}
+                        multiline: True
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: pregunta_preg_mod.height
+
+                    MDTextField: 
+                        id: pregunta_preg_mod
+                        icon_left: "account"
+                        hint_text: "Pregunta"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 20 
+                        mode: "fill"
+                        fill_color_normal: "#19076b"
+                        fill_color_focus: "#19076b" 
+                        pos_hint: {"center_x": 0.5, "center_y":0.6}
+                        multiline: True
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "40dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "35dp"
+                    MDFillRoundFlatButton:
+                        id: anadirImagen_Preg_mod
+                        text: "Cambiar imagen"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .5,"center_y":0.5}
+                        y: "20dp"
+                        on_release:
+                            app.buscarImagenPregunta()
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "35dp"
+                    MDFillRoundFlatButton:
+                        id: btnAgregar_Preg_mod
+                        text: "Modificar pregunta"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .5,"center_y":0.3}
+                        y: "20dp"
+                        on_release:
+                            app.modificarPreguntaSeleccionada()
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "35dp"
+                    MDFillRoundFlatButton:
+                        id: btnEliminar_Preg_Mod
+                        text: "Eliminar pregunta"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .5,"center_y":0.2}
+                        y: "20dp"
+                        on_release:
+                            app.eliminarPreguntaSeleccionada()
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "35dp"
+                    MDFillRoundFlatButton:
+                        id: btnRegresar_Preg_mod
+                        text: "Regresar"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .2,"center_y":0.1}
+                        y: "20dp"
+                        on_release:
+                            app.regresarVentanaModificar()
+    # /////////////////////////////////////////////////////////////////////////////////////////////////////
+    # /////////////////Interfaz de modificación y eliminación de respuestas personales ///////////////////
+    # ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+    MDScreen:
+        id:  infoRespuestas_Mod_Screen
+        name: "screen RespuestaMod"
+        md_bg_color: "#93AEBF"
+        hero_to: hero_to
+        
+        MDHeroTo:
+            id: hero_r
+            tag: "hero"
+            icon: "account-circle"
+            size_hint: None, None
+            size: "120dp", "120dp"
+            pos_hint: {"center_x": .50, "center_y": .90}
+            x: 24
+            
+        MDIconButton:
+            icon: 'forum'
+            pos_hint: {"center_x": 0.5, "center_y":0.90}
+            theme_icon_color: "Custom"
+            icon_color: "#110d4e"
+            icon_size: "50sp"
+            halign: "center"
+            valign: "center"
+
+        MDBoxLayout:
+            id: BoxInfoPreguntaSelect_Mod
+            md_bg_color: "#5386A6"
+            pos_hint: {"center_x": 0.5, "center_y":0.70}
+            adaptive_height: True
+            halign: "center"
+            valign: 'bottom'
+            size: (88,88)
+            ScrollView:
+                do_scroll_x: False
+                MDGridLayout:
+                    id: gridinfo_Mod_Resp
+                    cols: 1
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: dp(10)
+        MDBoxLayout:
+            md_bg_color: "#DDDDDD"
+            pos_hint: {"center_x": 0.5, "center_y":0.44}
+            adaptive_height: True
+            halign: "center"
+            valign: 'bottom'
+            size: (160,160)
+            ScrollView:
+                do_scroll_x: False
+                MDList:
+                    id: lista_respuestas_Modf
+                    size_hint_y: None
+                    height: root.height - BoxInfoPreguntaSelect.height
+                    padding: 10
+                    spacing: 10
+        
+        MDTextField:
+            id: text_field_resp_Mod
+            hint_text: "Respuesta"
+            icon_left: "email-outline"
+            pos_hint: {"center_x": 0.5, "center_y":0.20}
+        MDIconButton:
+            icon: "send"
+            pos_hint: {"center_y":0.20}
+            pos: text_field_resp_Mod.width - self.width + dp(8), 0
+            theme_text_color: "Hint"
+            on_release:
+                app.modificarRespuesta()
+
+        MDFillRoundFlatButton:
+            id: btnRegresarMenu_Resp_Mod
+            text: "Regresar"
+            md_bg_color: "#383EF1"
+            pos_hint: {"center_x": .3,"center_y":0.08}
+            y: "20dp"
+            on_release:
+                root.current_heroes = ["hero"]
+                root.current = "screen B"
+    
+    # /////////////////////////////////////////////////////////////////////////////////////////////////////
+    # /////////////////Interfaz de gestión de información de usuarios/////////////////////////////////////
+    # ///////////////////////////////////////////////////////////////////////////////////////////////////
+    MDScreen:
+        id:  infoUsuariosConsulta
+        name: "screen UsuarioConsulta"
+        md_bg_color: "#93AEBF"
+        hero_to: hero_to
+        
+        MDHeroTo:
+            id: hero_r
+            tag: "hero"
+            icon: "account-circle"
+            size_hint: None, None
+            size: "120dp", "120dp"
+            pos_hint: {"center_x": .50, "center_y": .90}
+            x: 24
+        
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                id: gridContenidoListaUsuariosAdmin
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "20dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "20dp"
+                    MDIconButton:
+                        id: btnUsuarioGestion
+                        icon: 'account-box-outline'
+                        pos_hint: {"center_x": 0.5, "center_y":0.90}
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "50sp"
+                        halign: "center"
+                        valign: "center"
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "20dp"
+                    MDLabel:    
+                        text: "Lista de usuarios"
+                        pos_hint: {"center_x": 0.5, "center_y":0.80}
+                        halign: "center"
+                        theme_text_color: "Custom"
+                        text_color: "#110d4e"
+                        font_name: "Times New Roman"
+                        bold: True
+                        font_style: "H5"
+                AnchorLayout:
+                    size_hint_y: None
+                    height: espacioListaUsuariosAdmin.height
+                    MDBoxLayout:
+                        id: espacioListaUsuariosAdmin
+                        md_bg_color: "#E8E7E7"
+                        pos_hint: {"center_x": 0.5, "center_y":0.44}
+                        adaptive_height: True
+                        halign: "center"
+                        valign: 'bottom'
+                        size: (250,250)
+                        ScrollView:
+                            do_scroll_x: False
+                            MDList:
+                                id: lista_Usuarios_Consulta
+                                size_hint_y: None
+                                height: root.height - btnUsuarioGestion.height
+                                spacing: 10
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "5dp"
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "40dp"
+                    MDFillRoundFlatButton:
+                        id: btnAgregarUsuarioNuevo
+                        text: "Agregar"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .7,"center_y":0.08}
+                        y: "20dp"
+                        on_release:
+                            root.current_heroes = ["hero"]
+                            root.current = "screen RegUserAdmin"
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "40dp"
+                    MDFillRoundFlatButton:
+                        id: btnRegresarMenu_Usuario
+                        text: "Regresar"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .3,"center_y":0.08}
+                        y: "20dp"
+                        on_release:
+                            root.current_heroes = ["hero"]
+                            root.current = "screen B"
+                            app.limpiarUsuarios()
+    
+    # /////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # /////////////////Interfaz de registro de usuarios por administrador/////////////////////////////////////
+    # ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    MDScreen:
+        name: "screen RegUserAdmin"
+        md_bg_color: "#93AEBF"
+        hero_to: hero_to
+        
+        MDHeroTo:
+            id: hero_r
+            tag: "hero"
+            icon: "account-circle"
+            size_hint: None, None
+            size: "120dp", "120dp"
+            pos_hint: {"center_x": .50, "center_y": .90}
+            x: 24
+
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                id: gridinfoUsuarioEspecificoConsulta
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+                AnchorLayout:
+                    size_hint_y: None
+                    height: butIconoUsuarioEspecifico.height
+                    MDIconButton:
+                        id: butIconoUsuarioEspecifico
+                        icon: "account-circle-outline"
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "50sp"
+                        halign: "center"
+                        valign: "center"
+            
+                MDLabel:    
+                    text: "Registro de usuarios"
+                    pos_hint: {"center_x": 0.5, "center_y":0.9}
+                    halign: "center"
+                    font_style: "H6"
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: nombreUsuario_reg_Admin.height
+                    MDTextField: 
+                        id: nombreUsuario_reg_Admin
+                        icon_left: "account"
+                        hint_text: "Usuario"
+                        theme_hint_text_color: "Custom"
+                        hint_text_color_normal: "#110d4e"
+                        mode: "rectangle"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11 
+                        pos_hint: {"center_x": 0.5, "center_y":0.8}
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: password_reg_Admin.height
+                    MDTextField: 
+                        id: password_reg_Admin
+                        icon_left: "key-variant"
+                        hint_text: "Nueva contraseña"
+                        theme_hint_text_color: "Custom"
+                        hint_text_color_normal: "#110d4e"
+                        mode: "rectangle"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11 
+                        pos_hint: {"center_x": 0.5, "center_y":0.7}
+                        password: True
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: correo_reg_Admin.height
+                    MDTextField: 
+                        id: correo_reg_Admin
+                        icon_left: "email"
+                        hint_text: "Correo"
+                        theme_hint_text_color: "Custom"
+                        hint_text_color_normal: "#110d4e"
+                        mode: "rectangle"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11 
+                        pos_hint: {"center_x": 0.5, "center_y":0.6}
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: nombre_reg_Admin.height
+                    MDTextField: 
+                        id: nombre_reg_Admin
+                        icon_left: "account-check"
+                        hint_text: "Nombre personal"
+                        theme_hint_text_color: "Custom"
+                        hint_text_color_normal: "#110d4e"
+                        mode: "rectangle"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        pos_hint: {"center_x": .5, "top": 1}
+                        size_hint:(None,None)
+                        width: 220
+                        font_size: 11
+                        halign: "center"
+                        valign: 'bottom'
+
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: apellido_reg_Admin.height
+                    MDTextField: 
+                        id: apellido_reg_Admin
+                        icon_left: "key-variant"
+                        hint_text: "Apellido"
+                        theme_hint_text_color: "Custom"
+                        hint_text_color_normal: "#110d4e"
+                        mode: "rectangle"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11 
+                        halign: "center"
+                        valign: "center"
+                        spacing: "4dp"
+                        pos_hint: {"center_x": .5, "top": 1}
+                        size_hint:(None,None)
+
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: checkGdAcademico_Admin.height
+                    MDCheckbox:
+                        id: checkGdAcademico_Admin
+                        size_hint: None, None
+                        size: "48dp", "48dp"
+                        pos_hint: {'center_x': .5, 'center_y': .4}
+                        active: False
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: grado_reg_Admin.height
+                    MDTextField: 
+                        id: grado_reg_Admin
+                        icon_left: "school"
+                        hint_text: "Grado Académico"
+                        theme_hint_text_color: "Custom"
+                        hint_text_color_normal: "#110d4e"
+                        mode: "rectangle"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11 
+                        y: "20dp"
+                        disabled: not checkGdAcademico_Admin.active
+                        pos_hint: {"center_x": .5, "top": 1}
+                        size_hint:(None,None)
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: telefono_reg_Admin.height
+                    MDTextField: 
+                        id: telefono_reg_Admin
+                        icon_left: "phone"
+                        hint_text: "Teléfono"
+                        theme_hint_text_color: "Custom"
+                        hint_text_color_normal: "#110d4e"
+                        mode: "rectangle"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11
+                        pos_hint: {"center_x": .5, "top": 1}
+                        size_hint:(None,None) 
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnRegistrarUsuario_Admin.height
+                    MDFillRoundFlatButton:
+                        id: btnRegistrarUsuario_Admin
+                        text: "Registrar"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .7,"center_y":0.18}
+                        y: "20dp"
+                        on_release:
+                            app.registrarUsuarioNuevoDesdeAdministrador()
+        
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnRegresarMenu.height
+                    MDFillRoundFlatButton:
+                        id: btnRegresarMenu
+                        text: "Regresar"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .3,"center_y":0.18}
+                        y: "20dp"
+                        on_release:
+                            root.current_heroes = ["hero"]
+                            root.current = "screen B"
+            
+    # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # /////////////////Interfaz de modificaciones y eliminaciones de usuarios por administrador/////////////////////////////////////
+    # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    MDScreen:
+        name: "screen UDAdminUsers"
+        md_bg_color: "#93AEBF"
+        hero_to: hero_to
+        
+        MDHeroTo:
+            id: hero_r
+            tag: "hero"
+            icon: "account-circle"
+            size_hint: None, None
+            size: "120dp", "120dp"
+            pos_hint: {"center_x": .50, "center_y": .90}
+            x: 24
+
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                id: gridInfoModificacionUsuarioAdministrador
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+                AnchorLayout:
+                    size_hint_y: None
+                    height: butIconoUsuarioModificarAdmin.height
+                    MDIconButton:
+                        id: butIconoUsuarioModificarAdmin
+                        icon: "account-circle-outline"
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "50sp"
+                        halign: "center"
+                        valign: "center"
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "20dp"
+                    MDLabel:    
+                        id: labelTitleModificacionEliminacionUsuarios
+                        text: "Modificación y eliminación de usuarios"
+                        pos_hint: {"center_x": 0.5, "center_y":0.9}
+                        halign: "center"
+                        font_style: "H6"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: nombreUsuario_reg_Admin_UD.height
+                    MDTextField: 
+                        id: nombreUsuario_reg_Admin_UD
+                        icon_left: "account"
+                        hint_text: "Usuario"
+                        theme_hint_text_color: "Custom"
+                        hint_text_color_normal: "#110d4e"
+                        mode: "rectangle"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11 
+                        pos_hint: {"center_x": 0.5, "center_y":0.8}
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: password_reg_Admin_UD.height
+                    MDTextField: 
+                        id: password_reg_Admin_UD
+                        icon_left: "key-variant"
+                        hint_text: "Nueva contraseña"
+                        theme_hint_text_color: "Custom"
+                        hint_text_color_normal: "#110d4e"
+                        mode: "rectangle"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11 
+                        pos_hint: {"center_x": 0.5, "center_y":0.7}
+                        password: True
+                AnchorLayout:
+                    size_hint_y: None
+                    height: correo_reg_Admin_UD.height
+                    MDTextField: 
+                        id: correo_reg_Admin_UD
+                        icon_left: "email"
+                        hint_text: "Correo"
+                        theme_hint_text_color: "Custom"
+                        hint_text_color_normal: "#110d4e"
+                        mode: "rectangle"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11 
+                        pos_hint: {"center_x": 0.5, "center_y":0.6}
+                        required: True
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: nombre_reg_Admin_UD.height
+                    MDTextField: 
+                        id: nombre_reg_Admin_UD
+                        icon_left: "account-check"
+                        hint_text: "Nombre personal"
+                        theme_hint_text_color: "Custom"
+                        hint_text_color_normal: "#110d4e"
+                        mode: "rectangle"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        pos_hint: {"center_x": .5, "top": 1}
+                        size_hint:(None,None)
+                        width: 220
+                        font_size: 11
+                        halign: "center"
+                        valign: 'bottom'
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: apellido_reg_Admin_UD.height
+                    MDTextField: 
+                        id: apellido_reg_Admin_UD
+                        icon_left: "key-variant"
+                        hint_text: "Apellido"
+                        theme_hint_text_color: "Custom"
+                        hint_text_color_normal: "#110d4e"
+                        mode: "rectangle"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11 
+                        halign: "center"
+                        valign: "center"
+                        spacing: "4dp"
+                        pos_hint: {"center_x": .5, "top": 1}
+                        size_hint:(None,None)
+                AnchorLayout:
+                    size_hint_y: None
+                    height: checkGdAcademico_Admin_UD.height
+                    MDCheckbox:
+                        id: checkGdAcademico_Admin_UD
+                        size_hint: None, None
+                        size: "48dp", "48dp"
+                        pos_hint: {'center_x': .5, 'center_y': .4}
+                        active: False
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: grado_reg_Admin_UD.height
+                    MDTextField: 
+                        id: grado_reg_Admin_UD
+                        icon_left: "school"
+                        hint_text: "Grado Académico"
+                        theme_hint_text_color: "Custom"
+                        hint_text_color_normal: "#110d4e"
+                        mode: "rectangle"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11 
+                        y: "20dp"
+                        disabled: not checkGdAcademico_Admin_UD.active
+                        pos_hint: {"center_x": .5, "top": 1}
+                        size_hint:(None,None)
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: telefono_reg_Admin_UD.height
+                    MDTextField: 
+                        id: telefono_reg_Admin_UD
+                        icon_left: "phone"
+                        hint_text: "Teléfono"
+                        theme_hint_text_color: "Custom"
+                        hint_text_color_normal: "#110d4e"
+                        mode: "rectangle"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11
+                        pos_hint: {"center_x": .5, "top": 1}
+                        size_hint:(None,None) 
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnModificarUsuario_Admin_UD.height
+                    MDFillRoundFlatButton:
+                        id: btnModificarUsuario_Admin_UD
+                        text: "Modificar"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .7,"center_y":0.18}
+                        y: "20dp"
+                        on_release:
+                            app.modificacionUsuarioDesdeAdministrador()
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: BtnEliminarUsuario_Admin_UD.height
+                    MDFillRoundFlatButton:
+                        id: BtnEliminarUsuario_Admin_UD
+                        text: "Eliminar"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .3,"center_y":0.18}
+                        y: "20dp"
+                        on_release:
+                            app.eliminarUsuarioDesdeAdministrador()
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnRegresarMenu_UD.height
+                    MDFillRoundFlatButton:
+                        id: btnRegresarMenu_UD
+                        text: "Regresar"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .5,"center_y":0.08}
+                        y: "20dp"
+                        on_release:
+                            root.current_heroes = ["hero"]
+                            root.current = "screen B"
+    
+    # /////////////////////////////////////////////////////////////////////////////////////////////
+    # /////////////////Interfaz de gestión de bases de datos /////////////////////////////////////
+    # ///////////////////////////////////////////////////////////////////////////////////////////
+
+    MDScreen:
+        id:  interface_RespaldoRecuperacionBD
+        name: "screen RR DB"
+        md_bg_color: "#93AEBF"
+        hero_to: hero_to
+        
+        MDHeroTo:
+            id: hero_r
+            tag: "hero"
+            icon: "account-circle"
+            size_hint: None, None
+            size: "120dp", "120dp"
+            pos_hint: {"center_x": .50, "center_y": .90}
+            x: 24
+        
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                id: gridDatabaseContent
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "40dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+                    MDIconButton:
+                        icon: 'database'
+                        pos_hint: {"center_x": 0.5, "center_y":0.90}
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "50sp"
+                        halign: "center"
+                        valign: "center"
+                    
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+                    MDLabel:
+                        text: "Menú de base de datos"
+                        halign: "center"
+                        font_style: "H6"
+                        theme_text_color: "Custom"
+                        text_color: "#110d4e"
+                        pos_hint: {"center_x":.50,"center_y":.75}
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "30dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnRespaldoBD.height
+                    MDFillRoundFlatIconButton:
+                        id: btnRespaldoBD
+                        text: "Respaldo"
+                        icon: "package-down"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .5,"center_y":0.55}
+                        y: "50dp"
+                        on_release:
+                            app.respaldoBaseDeDatos()
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnRestauracionBD.height
+                    MDFillRoundFlatIconButton:
+                        id: btnRestauracionBD
+                        text: "Restauración"
+                        icon: "backup-restore"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .5,"center_y":0.40}
+                        y: "50dp"
+                        on_release:
+                            app.restaurarBaseDeDatos()
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+                AnchorLayout: 
+                    size_hint_y: None
+                    height: btnRegresarMenu_Usuario.height
+                    MDFillRoundFlatButton:
+                        id: btnRegresarMenu_Usuario
+                        text: "Regresar"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .3,"center_y":0.08}
+                        y: "20dp"
+                        on_release:
+                            root.current_heroes = ["hero"]
+                            root.current = "screen B"
+                            app.limpiarUsuarios()
+
+    # /////////////////////////////////////////////////////////////////////////////////////////////
+    # /////////////////Interfaz de consulta de tratamientos  /////////////////////////////////////
+    # ///////////////////////////////////////////////////////////////////////////////////////////
+    MDScreen:
+        id:  tratamientosConsulta_Screen
+        name: "screen TratamientosConsulta"
+        md_bg_color: "#93AEBF"
+        hero_to: hero_to
+        
+        MDHeroTo:
+            id: hero_r
+            tag: "hero"
+            icon: "account-circle"
+            size_hint: None, None
+            size: "120dp", "120dp"
+            pos_hint: {"center_x": .50, "center_y": .90}
+            x: 24
+        
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                id: gridPreguntasPersonalesContenido
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+                    MDIconButton:
+                        icon: "needle"
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "50sp"
+                        halign: "center"
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "20dp"
+                    MDLabel:    
+                        id: tituloTratamientosNuevosConsultaLista
+                        text: "Tratamientos"
+                        pos_hint: {"center_x": 0.5, "center_y":0.80}
+                        halign: "center"
+                        theme_text_color: "Custom"
+                        text_color: "#110d4e"
+                        font_name: "Times New Roman"
+                        bold: True
+                        font_style: "H5"
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "20dp"
+                    MDLabel:    
+                        id: tituloTratamientosNuevosConsultaLista
+                        text: "Lista de tratamientos"
+                        pos_hint: {"center_x": 0.5, "center_y":0.80}
+                        halign: "center"
+                        theme_text_color: "Custom"
+                        text_color: "black"
+                        font_name: "Times New Roman"
+                        font_style: "Body2"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "400dp"
+
+                    ScrollView:
+                        do_scroll_x: False
+                        MDGridLayout:
+                            id: gridTratamientosConsulta
+                            cols: 1
+                            row_default_height: (self.width - self.cols*self.spacing[0]) / self.cols
+                            row_force_default: True
+                            adaptive_height: True
+                            padding: dp(4), dp(4)
+                            spacing: dp(4)
+
+        MDFloatingActionButton:
+            icon: "plus"
+            md_bg_color: "#383EF1"
+            on_release:
+                root.current_heroes = ["hero"]
+                root.current = "screen RegTratamiento"
+
+    # /////////////////////////////////////////////////////////////////////////////////////////////
+    # /////////////////Interfaz de registro de tratamientos  /////////////////////////////////////
+    # ///////////////////////////////////////////////////////////////////////////////////////////
+    MDScreen:
+        name: "screen RegTratamiento"
+        md_bg_color: "#93AEBF"
+        hero_to: hero_to
+        
+        MDHeroTo:
+            id: hero_r
+            tag: "hero"
+            icon: "account-circle"
+            size_hint: None, None
+            size: "120dp", "120dp"
+            pos_hint: {"center_x": .50, "center_y": .90}
+            x: 24
+
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                id: gridCuestionarioTratamientosRegistroNuevo
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "25dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+                    MDIconButton:
+                        icon: 'lead-pencil'
+                        pos_hint: {"center_x": 0.5, "center_y":0.90}
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "50sp"
+                        halign: "center"
+                        valign: "center"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "25dp"
+                    MDLabel:    
+                        text: "Registro de tratamientos"
+                        theme_text_color: "Custom"
+                        text_color: "#110d4e"
+                        pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "center"
+                        font_style: "H6"
+                        bold: True
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnAddImageTratamiento.height
+                    MDFillRoundFlatButton:
+                        id: btnAddImageTratamiento
+                        text: "Añadir imagen"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .5,"center_y":0.85}
+                        y: "20dp"
+                        on_release:
+                            app.buscarImagenTratamiento()
+                AnchorLayout:
+                    size_hint_y: None
+                    height: enfermedad_tratamiento_text.height
+                    MDTextField: 
+                        id: enfermedad_tratamiento_text
+                        hint_text: "Enfermedad"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11
+                        mode: "fill"
+                        fill_color_normal: "#5630F8"
+                        fill_color_focus: "#5630F8" 
+                        pos_hint: {"center_x": 0.5, "center_y":0.75}
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: fungicida_tratamiento_text.height
+                    MDTextField: 
+                        id: fungicida_tratamiento_text
+                        hint_text: "Fungicida"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11 
+                        mode: "fill"
+                        fill_color_normal: "#5630F8"
+                        fill_color_focus: "#5630F8"
+                        pos_hint: {"center_x": 0.5, "center_y":0.65}
+                AnchorLayout:
+                    size_hint_y: None
+                    height: marca_tratamiento_text.height
+                    MDTextField: 
+                        id: marca_tratamiento_text
+                        hint_text: "Marca"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11
+                        mode: "fill"
+                        fill_color_normal: "#5630F8"
+                        fill_color_focus: "#5630F8" 
+                        pos_hint: {"center_x": 0.5, "center_y":0.55}
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: instrucciones_tratamiento_text.height
+                    MDTextField: 
+                        id: instrucciones_tratamiento_text
+                        hint_text: "Instrucciones de uso"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11
+                        mode: "fill"
+                        fill_color_normal: "#5630F8"
+                        fill_color_focus: "#5630F8" 
+                        pos_hint: {"center_x": 0.5, "center_y":0.45}
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: precauciones_tratamiento_text.height
+                    MDTextField: 
+                        id: precauciones_tratamiento_text
+                        hint_text: "Precauciones de uso"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11
+                        mode: "fill"
+                        fill_color_normal: "#5630F8"
+                        fill_color_focus: "#5630F8" 
+                        pos_hint: {"center_x": 0.5, "center_y":0.35}
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnRegistrarTratamiento.height
+                    MDFillRoundFlatButton:
+                        id: btnRegistrarTratamiento
+                        text: "Registrar"
+                        pos_hint: {"center_x": .5,"center_y":0.25}
+                        y: "20dp"
+                        md_bg_color: "#383EF1"
+                        on_release:
+                            app.registrarNuevoTratamiento()
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnRegresarTratamiento.height
+                    MDFillRoundFlatButton:
+                        id: btnRegresarTratamiento
+                        text: "Regresar"
+                        pos_hint: {"center_x": .5,"center_y":0.15}
+                        y: "20dp"
+                        md_bg_color: "#383EF1"
+                        on_release:
+                            root.current_heroes = ["hero"]
+                            root.current = "screen B"
+    # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # /////////////////Interfaz de modificacion y eliminación de tratamientos  /////////////////////////////////////
+    # /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    MDScreen:
+        name: "screen RegTratamiento_mod"
+        md_bg_color: "#93AEBF"
+        hero_to: hero_to
+        
+        MDHeroTo:
+            id: hero_r
+            tag: "hero"
+            icon: "account-circle"
+            size_hint: None, None
+            size: "120dp", "120dp"
+            pos_hint: {"center_x": .50, "center_y": .90}
+            x: 24
+            
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                id: gridModificacionCuestionarioTratamientos
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "25dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+                    MDIconButton:
+                        icon: 'progress-pencil'
+                        pos_hint: {"center_x": 0.5, "center_y":0.90}
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "50sp"
+                        halign: "center"
+                        valign: "center"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "25dp"
+
+                    MDLabel:    
+                        text: "Información de tratamiento"
+                        theme_text_color: "Custom"
+                        text_color: "#110d4e"
+                        pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "center"
+                        font_style: "H6"
+                        bold: True
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnAddImageTratamiento_modf.height
+                    MDFillRoundFlatButton:
+                        id: btnAddImageTratamiento_modf
+                        text: "Añadir imagen"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .5,"center_y":0.85}
+                        y: "20dp"
+                        on_release:
+                            app.buscarImagenTratamiento()
+                AnchorLayout:
+                    size_hint_y: None
+                    height: enfermedad_tratamiento_text.height
+                    MDTextField: 
+                        id: enfermedad_tratamiento_text_modf
+                        hint_text: "Enfermedad"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11 
+                        mode: "fill"
+                        fill_color_normal: "#5630F8"
+                        fill_color_focus: "#5630F8"
+                        pos_hint: {"center_x": 0.5, "center_y":0.75}
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: fungicida_tratamiento_text_modf.height
+                    MDTextField: 
+                        id: fungicida_tratamiento_text_modf
+                        hint_text: "Fungicida"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11 
+                        mode: "fill"
+                        fill_color_normal: "#5630F8"
+                        fill_color_focus: "#5630F8"
+                        pos_hint: {"center_x": 0.5, "center_y":0.65}
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: marca_tratamiento_text_modf.height
+                    MDTextField: 
+                        id: marca_tratamiento_text_modf
+                        hint_text: "Marca"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11 
+                        mode: "fill"
+                        fill_color_normal: "#5630F8"
+                        fill_color_focus: "#5630F8"
+                        pos_hint: {"center_x": 0.5, "center_y":0.55}
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: instrucciones_tratamiento_text_modf.height
+                    MDTextField: 
+                        id: instrucciones_tratamiento_text_modf
+                        hint_text: "Instrucciones de uso"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11 
+                        mode: "fill"
+                        fill_color_normal: "#5630F8"
+                        fill_color_focus: "#5630F8"
+                        pos_hint: {"center_x": 0.5, "center_y":0.45}
+                        required: True
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: precauciones_tratamiento_text_modf.height
+                    MDTextField: 
+                        id: precauciones_tratamiento_text_modf
+                        hint_text: "Precauciones de uso"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 11 
+                        mode: "fill"
+                        fill_color_normal: "#5630F8"
+                        fill_color_focus: "#5630F8"
+                        pos_hint: {"center_x": 0.5, "center_y":0.35}
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "20dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnModificarTratamiento.height
+                    MDFillRoundFlatButton:
+                        id: btnModificarTratamiento
+                        text: "Modificar"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .3,"center_y":0.25}
+                        y: "20dp"
+                        on_release:
+                            app.modificarTratamientoSeleccionado()
+        
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnEliminarTratamiento.height
+                    MDFillRoundFlatButton:
+                        id: btnEliminarTratamiento
+                        text: "Eliminar"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .7,"center_y":0.25}
+                        y: "20dp"
+                        on_release:
+                            app.eliminarTratamientoSeleccionado()
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "20dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnRegresarTratamiento.height
+                    MDFillRoundFlatButton:
+                        id: btnRegresarTratamiento
+                        text: "Regresar"
+                        md_bg_color: "#383EF1"
+                        pos_hint: {"center_x": .5,"center_y":0.15}
+                        y: "20dp"
+                        on_release:
+                            root.current_heroes = ["hero"]
+                            root.current = "screen B"
+    
+    # ////////////////////////////////////////////////////////////////////////////////////////////////
+    # /////////////////Interfaz de RESULTADO DE RECONOCIMIENTO  /////////////////////////////////////
+    # //////////////////////////////////////////////////////////////////////////////////////////////
+    MDScreen:
+        name: "screen ReconocimientoResultado"
+        md_bg_color: "93AEBF"
+        hero_to: hero_to
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                id: gridinfo
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "60dp"
+                    MDIconButton:
+                        id: icontitle_Reconocimiento_Menu
+                        icon: 'medical-bag'
+                        pos_hint: {"center_x": 0.5, "center_y":0.90}
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "75sp"
+                        halign: "center"
+                        valign: "center"
+                        
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+                    MDLabel:    
+                        id: labelTitle_Reconocimiento
+                        text: "Resultado de reconocimiento de la imagen"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        theme_text_color: "Custom"
+                        text_color: "#110d4e"
+                        halign: "center"
+                        font_style: "H6"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: imagenSeleccionadaReconocimiento.height
+                    MDSmartTile:
+                        id: imagenSeleccionadaReconocimiento
+                        radius: 24
+                        box_radius: [0, 0, 24, 24]
+                        lines: 2
+                        size_hint: None, None
+                        size: "220dp", "220dp"
+                        # source: "C:/Users/Paco/Downloads/IMG_6402.JPG"
+                        OneLineListItem:
+                            id: resultadoTextoImagenReconocimiento
+                            # text: "[color=#ffffff][b]Didymella[/b][/color]"
+                            # secondary_text: "[color=#808080][b]Grave[/b][/color]"
+                            _no_ripple_effect: True
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "35dp"
+                    MDLabel:    
+                        id: labelAcomp_ResultadoReconocimiento
+                        text: "El resultado arrojado por el sistema fue obtenido através del analisís realizado por el modelo de entrenamiento de la inteligencia artificial de DPE"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "justify"
+                        font_style: "Body2"
+                        theme_text_color: "Custom"
+                        text_color: "#020334"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+                    MDLabel:    
+                        id: labelTratamientosTitle
+                        text: "Tratamientos recomendados"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "center"
+                        font_style: "H6"
+                        theme_text_color: "Custom"
+                        text_color: "#110d4e"
+                        bold: True
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "35dp"
+                    MDLabel:    
+                        id: labelAcompTrat_ResultadoReconocimiento
+                        text: "Delize hacia abajo para consultar todos los tratamientos realizados por expertos"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "justify"
+                        font_style: "Body2"
+                        theme_text_color: "Custom"
+                        text_color: "#020334"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: cajaTratamientosRecomendados.height
+                    MDBoxLayout:
+                        id: cajaTratamientosRecomendados
+                        md_bg_color: "#93AEBF"
+                        pos_hint: {"center_x": 0.5, "center_y":0.44}
+                        adaptive_height: True
+                        halign: "center"
+                        valign: 'bottom'
+                        size: (160,200)
+                        ScrollView:
+                            do_scroll_x: False
+                            MDGridLayout:
+                                id: gridTratamientosConsultaRecomendados
+                                cols: 2
+                                row_default_height: (self.width - self.cols*self.spacing[0]) / self.cols
+                                row_force_default: True
+                                adaptive_height: True
+                                padding: dp(4), dp(4)
+                                spacing: dp(4)
+                            
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnRegresarConsultaReconocimiento.height
+                    MDFillRoundFlatButton:
+                        id: btnRegresarConsultaReconocimiento
+                        text: "Regresar"
+                        pos_hint: {"center_x": .5,"center_y":0.15}
+                        y: "20dp"
+                        md_bg_color: "#19076b"
+                        on_release:
+                            root.current_heroes = ["hero"]
+                            root.current = "screen B"
+    # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # /////////////////Interfaz de tratamiento seleccionado DE RECONOCIMIENTO  /////////////////////////////////////
+    # /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    
+    MDScreen:
+        name: "screen ReconocimientoTratamientoSeleccionado"
+        md_bg_color: "#93AEBF"
+        hero_to: hero_to
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                id: gridinfo
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+                    MDIconButton:
+                        icon: 'hospital-box'
+                        pos_hint: {"center_x": 0.5, "center_y":0.90}
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "50sp"
+                        halign: "center"
+                        valign: "center"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+                    MDLabel:    
+                        id: labelTitle_Reconocimiento_Tratamiento
+                        text: "Tratamiento seleccionado"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "center"
+                        font_style: "H5"
+                        theme_text_color: "Custom"
+                        text_color: "#110d4e"
+                        bold: True
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: imagenSeleccionadaReconocimiento_Tratamiento.height
+                    MDSmartTile:
+                        id: imagenSeleccionadaReconocimiento_Tratamiento
+                        radius: 24
+                        box_radius: [0, 0, 24, 24]
+                        size_hint: None, None
+                        size: "220dp", "220dp"
+                        # source: "C:/Users/Paco/Downloads/IMG_6402.JPG"
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "30dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "20dp"
+                    MDIconButton:
+                        icon: 'bacteria-outline'
+                        pos_hint: {"center_x": 0.5, "center_y":0.90}
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "30sp"
+                        halign: "center"
+                        valign: "center"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "20dp"
+                    MDLabel:    
+                        id: labelTratamientoEnfermedad_TitleSeleccionado
+                        text: "Enfermedad:"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "center"
+                        font_style: "H6"
+                        theme_text_color: "Custom"
+                        text_color: "#110d4e"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "40dp"
+                    MDLabel:    
+                        id: labelTratamiento_TitleSeleccionado
+                        text: "Enfermedad contenido"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "center"
+                        font_style: "Subtitle1"
+                        theme_text_color: "Custom"
+                        text_color: "#020334"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "15dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "20dp"
+                    MDIconButton:
+                        icon: 'ticket-outline'
+                        pos_hint: {"center_x": 0.5, "center_y":0.90}
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "30sp"
+                        halign: "center"
+                        valign: "center"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "20dp"
+                    MDLabel:    
+                        id: labelMarcaTitulo_TratamientoReconocimiento
+                        text: "Marca:"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "center"
+                        font_style: "H6"
+                        theme_text_color: "Custom"
+                        text_color: "#110d4e" 
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: labelMarca_TratamientoReconocimiento.height
+                    MDLabel:    
+                        id: labelMarca_TratamientoReconocimiento
+                        text: "Marca  contenido"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "justify"
+                        font_style: "Subtitle1"
+                        theme_text_color: "Custom"
+                        text_color: "#020334" 
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "15dp" 
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "20dp"
+                    MDIconButton:
+                        icon: 'playlist-check'
+                        pos_hint: {"center_x": 0.5, "center_y":0.90}
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "30sp"
+                        halign: "center"
+                        valign: "center"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: labelDescripcionTitulo_TratamientoReconocimiento.height
+                    MDLabel:    
+                        id: labelDescripcionTitulo_TratamientoReconocimiento
+                        text: "Descripción de aplicación:"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "center"
+                        font_style: "H6"
+                        theme_text_color: "Custom"
+                        text_color: "#110d4e" 
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: labelDescripcion_TratamientoReconocimiento.height
+                    MDLabel:    
+                        id: labelDescripcion_TratamientoReconocimiento
+                        text: "Descripción contenido"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "justify"
+                        font_style: "Body1" 
+                        theme_text_color: "Custom"
+                        text_color: "#020334"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "15dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "20dp"
+                    MDIconButton:
+                        icon: 'alert-outline'
+                        pos_hint: {"center_x": 0.5, "center_y":0.90}
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "30sp"
+                        halign: "center"
+                        valign: "center"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "20dp"
+                    MDLabel:    
+                        id: labelPrecaucionTitulo_TratamientoReconocimiento
+                        text: "Precauciones de uso:"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "center"
+                        font_style: "H6" 
+                        theme_text_color: "Custom"
+                        text_color: "#110d4e" 
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: labelPrecaucion_TratamientoReconocimiento.height
+                    MDLabel:    
+                        id: labelPrecaucion_TratamientoReconocimiento
+                        text: "Precauciones contenido"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "justify"
+                        font_style: "Body1"
+                        theme_text_color: "Custom"
+                        text_color: "#020334"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "15dp"
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnRegresarConsultaReconocimiento.height
+                    MDFillRoundFlatButton:
+                        id: btnRegresarConsultaReconocimiento
+                        text: "Regresar"
+                        # pos_hint: {"center_x": .5,"center_y":0.15}
+                        y: "20dp"
+                        md_bg_color: "#19076b"
+                        on_release:
+                            root.current_heroes = ["hero"]
+                            root.current = "screen ReconocimientoResultado"
+    
+    # ///////////////////////////////////////////////////////////////////////////////////////
+    # /////////////////Interfaz de botones de reportes /////////////////////////////////////
+    # /////////////////////////////////////////////////////////////////////////////////////
+    MDScreen:
+        name: "screen ReportesBotones"
+        md_bg_color: "#93AEBF"
+        hero_to: hero_to
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                id: gridinfo
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "30dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+                    MDIconButton:
+                        icon: 'chart-multiple'
+                        pos_hint: {"center_x": 0.5, "center_y":0.90}
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "50sp"
+                        halign: "center"
+                        valign: "center"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "25dp"
+                    MDLabel:    
+                        id: labelTitle_ReporteTitle
+                        text: "Reportes"
+                        theme_text_color: "Custom"
+                        text_color: "#110d4e"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "center"
+                        font_style: "H5"
+                        bold: True
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "30sp"
+                    MDLabel:    
+                        id: labelTitle_ReporteAviso
+                        text: "Elija su estilo de reporte"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "center"
+                        font_style: "H6"
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnAbrirFiltroTratamientoReporte.height
+                    MDFillRoundFlatButton:
+                        id: btnAbrirFiltroTratamientoReporte
+                        text: "Tratamientos"
+                        md_bg_color: "#19076b"
+                        # pos_hint: {"center_x": .5,"center_y":0.15}
+                        y: "20dp"
+                        on_release:
+                            root.current_heroes = ["hero"]
+                            root.current = "screen ReporteTratamiento"
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnAbrirFiltroExpertoReporte.height
+                    MDFillRoundFlatButton:
+                        id: btnAbrirFiltroExpertoReporte
+                        text: "Expertos"
+                        md_bg_color: "#19076b"
+                        # pos_hint: {"center_x": .5,"center_y":0.15}
+                        y: "20dp"
+                        on_release:
+                            root.current_heroes = ["hero"]
+                            root.current = "screen ReporteExpertoRecomendaciones"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnAbrirFiltroEnfermedadReporte.height
+                    MDFillRoundFlatButton:
+                        id: btnAbrirFiltroEnfermedadReporte
+                        text: "Enfermedades"
+                        md_bg_color: "#19076b"
+                        # pos_hint: {"center_x": .5,"center_y":0.15}
+                        y: "20dp"
+                        on_release:
+                            root.current_heroes = ["hero"]
+                            root.current = "screen ReporteDiagnostico"
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnRegresarMenuFiltroReporteBtones.height
+                    MDFillRoundFlatButton:
+                        id: btnRegresarMenuFiltroReporteBtones
+                        text: "Regresar"
+                        md_bg_color: "#19076b"
+                        # pos_hint: {"center_x": .5,"center_y":0.15}
+                        y: "20dp"
+                        on_release:
+                            root.current_heroes = ["hero"]
+                            root.current = "screen B"
+                
+    # /////////////////////////////////////////////////////////////////////////////////////////////////
+    # /////////////////Reporte de diagnosticos Filtro - Interfaz --///////////////////////////////////
+    # ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    MDScreen:
+        name: "screen ReporteDiagnostico"
+        md_bg_color: "#93AEBF"
+        hero_to: hero_to
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                id: gridinfo
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "30dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+                    MDIconButton:
+                        icon: 'emoticon-sick'
+                        pos_hint: {"center_x": 0.5, "center_y":0.90}
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "50sp"
+                        halign: "center"
+                        valign: "center"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "25dp"
+                    MDLabel:    
+                        id: labelTitleEnfermedadReporte
+                        text: "Reporte de diagnosticos"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "center"
+                        font_style: "H5"
+                        bold: True
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: labelSubtitleIndicacionEnfermedad.height
+                    MDLabel:    
+                        id: labelSubtitleIndicacionEnfermedad
+                        text: "El presente reporte generará un historial del presente año sobre los resultados obtenidos en los diagnosticos de imagenes"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "justify"
+                        font_style: "Body1"
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "30dp"
+                    MDLabel:    
+                        id: labelFiltroEnfermedad
+                        text: "Tipo de filtro:"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "center"
+                        font_style: "H5"
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "25dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnEleccionDidymellaReporteEnfermedad.height
+                    MDFillRoundFlatButton:
+                        id: btnEleccionDidymellaReporteEnfermedad
+                        text: "Didymella"
+                        md_bg_color: "#19076b"
+                        # pos_hint: {"center_x": .5,"center_y":0.15}
+                        y: "20dp"
+                        on_release:
+                            app.opcionDidymellaReporte()
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnEleccionRojaReporteEnfermedad.height
+                    MDFillRoundFlatButton:
+                        id: btnEleccionRojaReporteEnfermedad
+                        text: "Araña Roja"
+                        md_bg_color: "#19076b"
+                        # pos_hint: {"center_x": .5,"center_y":0.15}
+                        y: "20dp"
+                        on_release:
+                            app.opcionRojaReporte()
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnEleccionSanaReporteEnfermedad.height
+                    MDFillRoundFlatButton:
+                        id: btnEleccionSanaReporteEnfermedad
+                        text: "Planta sana"
+                        md_bg_color: "#19076b"
+                        # pos_hint: {"center_x": .5,"center_y":0.15}
+                        y: "20dp"
+                        on_release:
+                            app.opcionSanaReporte()
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "25dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: textfielNombre_ReporteEnfermedad.height
+                    MDTextField:
+                        id: textfielNombre_ReporteEnfermedad
+                        hint_text: "Nombre del documento"
+                        mode: "rectangle"
+                        # max_text_length: 20
+                        helper_text: "Ejemplo: reporte.pdf"
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "25dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnRGenerarReporteEnfermedad.height
+                    MDFillRoundFlatButton:
+                        id: btnRGenerarReporteEnfermedad
+                        text: "Generar"
+                        md_bg_color: "#19076b"
+                        # pos_hint: {"center_x": .5,"center_y":0.15}
+                        y: "20dp"
+                        on_release:
+                            app.generarReportePDFEnfermedades()
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnRGenerarReporteEnfermedadRegresar.height
+                    MDFillRoundFlatButton:
+                        id: btnRGenerarReporteEnfermedadRegresar
+                        text: "Regresar"
+                        md_bg_color: "#19076b"
+                        # pos_hint: {"center_x": .5,"center_y":0.15}
+                        y: "20dp"
+                        on_release:
+                            root.current_heroes = ["hero"]
+                            root.current = "screen B"
+    
+    # /////////////////////////////////////////////////////////////////////////////////////////////////
+    # /////////////////Reporte de tratamientos Filtro - Interfaz --///////////////////////////////////
+    # ///////////////////////////////////////////////////////////////////////////////////////////////
+    MDScreen:
+        name: "screen ReporteTratamiento"
+        md_bg_color: "#93AEBF"
+        hero_to: hero_to
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                id: gridinfo
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "30dp" 
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+                    MDIconButton:
+                        icon: 'magnify-expand'
+                        pos_hint: {"center_x": 0.5, "center_y":0.90}
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "50sp"
+                        halign: "center"
+                        valign: "center"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "25dp"
+                    MDLabel:    
+                        id: labeltitleReporteTratamiento_1
+                        text: "Reporte de tratamientos"
+                        theme_text_color: "Custom"
+                        text_color: "#110d4e"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "center"
+                        font_style: "H5"
+                        bold: True
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: labelSubtitle_recomendacion.height
+                    MDLabel:    
+                        id: labelSubtitle_recomendacion
+                        text: "El presente reporte generará un historial del presente año del tratamiento recomendado tras el diagnostico de la imagen por mes"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "justify"
+                        font_style: "Body1"
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: textfielNombre_ReporteTratamiento.height
+                    MDTextField:
+                        id: textfielNombre_ReporteTratamiento
+                        hint_text: "Nombre del documento"
+                        theme_hint_text_color: "Custom"
+                        hint_text_color_normal: "#110d4e"
+
+                        mode: "rectangle"
+                        foreground_color: 1, 0, 1, 1
+                        # max_text_length: 20
+                        helper_text: " Ejemplo: reporte.pdf"
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "80dp"
+                    MDFillRoundFlatButton:
+                        id: btnRGenerarReporteTratamiento
+                        text: "Generar"
+                        md_bg_color: "#19076b"
+                        # pos_hint: {"center_x": .5,"center_y":0.15}
+                        y: "20dp"
+                        on_release:
+                            app.generarReportePDFTratamientos()
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnRGenerarReporteTratamientoRegresar.height
+                    MDFillRoundFlatButton:
+                        id: btnRGenerarReporteTratamientoRegresar
+                        text: "Regresar"
+                        md_bg_color: "#19076b"
+                        # pos_hint: {"center_x": .5,"center_y":0.15}
+                        y: "20dp"
+                        on_release:
+                            root.current_heroes = ["hero"]
+                            root.current = "screen B"
+    # /////////////////////////////////////////////////////////////////////////////////////////////////
+    # /////////////////Reporte de expertos Filtro - Interfaz --    ///////////////////////////////////
+    # ///////////////////////////////////////////////////////////////////////////////////////////////
+    MDScreen:
+        name: "screen ReporteExpertoRecomendaciones"
+        md_bg_color: "#93AEBF"
+        hero_to: hero_to
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                id: gridinfo
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "30dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+                    MDIconButton:
+                        icon: 'doctor'
+                        pos_hint: {"center_x": 0.5, "center_y":0.90}
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "50sp"
+                        halign: "center"
+                        valign: "center"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "25dp"
+                    MDLabel:    
+                        id: labelTitleExpertoReporte
+                        text: "Reporte de experto"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "center"
+                        theme_text_color: "Custom"
+                        text_color: "#110d4e"
+                        font_style: "H5"
+                        bold: True
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: labelSubtitleHistorialExperto.height
+                    MDLabel:    
+                        id: labelSubtitleHistorialExperto
+                        text: "El presente reporte generará un historial del presente año sobre los tratamientos recomendados en base al experto seleccionado"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "justify"
+                        font_style: "Body1"
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: textFieldExpertoNombreUsuarioReporte.height
+                    MDTextField:
+                        id: textFieldExpertoNombreUsuarioReporte
+                        hint_text: "Nombre de usuario del experto"
+                        mode: "rectangle"
+                        # max_text_length: 20
+                        helper_text: "Ejemplo: Fernanda"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: textFieldNombreReporteExperto.height
+                    MDTextField:
+                        id: textFieldNombreReporteExperto
+                        hint_text: "Nombre del documento"
+                        mode: "rectangle"
+                        # max_text_length: 20
+                        helper_text: "Ejemplo: reporte.pdf"
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "30dp"
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnGenerarReporteExpertoHistorial.height
+                    MDFillRoundFlatButton:
+                        id: btnGenerarReporteExpertoHistorial
+                        text: "Generar"
+                        md_bg_color: "#19076b"
+                        # pos_hint: {"center_x": .5,"center_y":0.15}
+                        y: "20dp"
+                        on_release:
+                            app.generarReportePDFExpertos()
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnRegresarReporteExperto.height
+                    MDFillRoundFlatButton:
+                        id: btnRegresarReporteExperto
+                        text: "Regresar"
+                        md_bg_color: "#19076b"
+                        # pos_hint: {"center_x": .5,"center_y":0.15}
+                        y: "20dp"
+                        on_release:
+                            root.current_heroes = ["hero"]
+                            root.current = "screen B"
+    
+    # /////////////////////////////////////////////////////////////////////////////////////
+    # /////////////////Interfaz de recuperación de contraseña de usuario///////////////////
+    # /////////////////////////////////////////////////////////////////////////////////////
+
+    MDScreen:
+        name: "screen RecuperacionC"
+        md_bg_color: "#110d4e"
+        hero_to: hero_to
+        
+        MDHeroTo:
+            id: hero_r
+            tag: "hero"
+            icon: "account-circle"
+            size_hint: None, None
+            size: "120dp", "120dp"
+            pos_hint: {"center_x": .50, "center_y": .90}
+            x: 24
+            
+            
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                id: gridRecuperacionContra
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "5dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+                    MDIconButton:
+                        icon: 'lock'
+                        pos_hint: {"center_x": 0.5, "center_y":0.90}
+                        theme_icon_color: "Custom"
+                        icon_color: "white"
+                        icon_size: "50sp"
+                        halign: "center"
+                        valign: "center"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: labelTitleRecuperacion.height
+                    MDLabel:    
+                        id: labelTitleRecuperacion
+                        text: "Recuperacion de contraseña"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        font_style: "H5"
+                        halign: "center"
+                        theme_text_color: "Custom"
+                        text_color: "white"
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: textcorreoRecuperacion.height
+                    MDTextField: 
+                        id: textcorreoRecuperacion
+                        icon_left: "email"
+                        hint_text: "Correo de usuario"
+                        color_mode:'custom'
+                        line_color_normal: "white"
+                        hint_text_color_normal: "white"
+                        icon_left_color_normal: "white"
+                        text_color_focus: "white"
+                        text_color_normal: "white"
+                        foreground_color: 1, 0, 1, 1
+                        size_hint_x: None
+                        width: 220
+                        font_size: 20 
+                        mode: "fill"
+                        fill_color_normal: "#19076b"
+                        fill_color_focus: "#19076b"
+                        pos_hint: {"center_x": 0.5, "center_y":0.7}
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: labelTitleRecuperacion.height
+                    MDLabel:    
+                        id: labelTitleRecuperacion
+                        text: "Ingrese el correo del usuario registrado anteriormente para recuperar su contraseña"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "justify"
+                        font_style: "Body1"
+                        theme_text_color: "Custom"
+                        text_color: "white"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "5dp"
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnRecuperacionContra1.height
+                    MDFillRoundFlatButton:
+                        id: btnRecuperacionContra1
+                        text: "Enviar"
+                        md_bg_color: "#19076b"
+                        # pos_hint: {"center_x": .5,"center_y":0.15}
+                        y: "20dp"
+                        on_release:
+                            app.enviarCorreoDeRecuperacionCorreo()
+                
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnRegresarRecuperacion.height
+                    MDFillRoundFlatButton:
+                        id: btnRegresarRecuperacion
+                        text: "Regresar"
+                        md_bg_color: "#19076b"
+                        # pos_hint: {"center_x": .5,"center_y":0.15}
+                        y: "20dp"
+                        on_release:
+                            root.current_heroes = ["hero"]
+                            root.current = "screen A"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "30dp"
+                
+    MDScreen:
+        name: "screen tomaFotohrafiaInterfaz"
+        md_bg_color: "#93AEBF"
+        hero_to: hero_to
+        
+        MDHeroTo:
+            id: hero_r
+            tag: "hero"
+            icon: "account-circle"
+            size_hint: None, None
+            size: "120dp", "120dp"
+            pos_hint: {"center_x": .50, "center_y": .90}
+            x: 24
+            
+            
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                id: gridRecuperacionContra
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "5dp"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "50dp"
+                    MDIconButton:
+                        icon: 'camera-burst'
+                        pos_hint: {"center_x": 0.5, "center_y":0.90}
+                        theme_icon_color: "Custom"
+                        icon_color: "#110d4e"
+                        icon_size: "50sp"
+                        halign: "center"
+                        valign: "center"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "45dp"
+                    MDLabel:    
+                        id: labeltitleReporteTratamiento_1
+                        text: "Toma tu fotografía"
+                        theme_text_color: "Custom"
+                        text_color: "#110d4e"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "center"
+                        font_style: "H5"
+                        bold: True
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "10dp"
+                    MDLabel:    
+                        id: labelAvisoFoto
+                        text: "Haga clic sobre el botón de camara para capturar tu imagen"
+                        # pos_hint: {"center_x": 0.5, "center_y":0.95}
+                        halign: "justify"
+                        font_style: "Body1"
+                        theme_text_color: "Custom"
+                        text_color: "#020334"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "70dp"
+                    MDFloatingActionButton:
+                        icon: 'camera'
+                        pos_hint: {'center_y': 0.5}
+                        theme_icon_color: "Custom"
+                        icon_color: "white"
+                        icon_size: "40sp"
+                        on_release: app.capturarImagenReconocimientoNueva()
+                        halign: "center"
+                        valign: "center"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "300dp"
+                    Camera:
+                        id: camera
+                        resolution: (120, 220)
+                        play: False
+                        size_hint: (1, 0.8)
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: btnRegresarFotoReconocimientoNueva.height
+                    MDFillRoundFlatButton:
+                        id: btnRegresarFotoReconocimientoNueva
+                        text: "Regresar"
+                        md_bg_color: "#19076b"
+                        # pos_hint: {"center_x": .5,"center_y":0.15}
+                        y: "20dp"
+                        on_release:
+                            root.current_heroes = ["hero"]
+                            root.current = "screen B"
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: "5dp"
